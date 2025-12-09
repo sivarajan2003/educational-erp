@@ -4,6 +4,10 @@
 html {
     scroll-behavior: smooth;
   }
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  
   
 /* Dotted background pattern */
 /* Background dot pattern: shifted inward */

@@ -20,16 +20,17 @@ export default function Hero() {
   }, []);
 
   return (
-    
     <section
       id="home"
       className="
-        relative min-h-screen flex items-center justify-center 
+        relative min-h-screen flex flex-col items-center justify-center 
         bg-[#0F131D] 
-        bg-dot-pattern   /* custom pattern class */
+        bg-dot-pattern
+        text-center
       "
     >
-      <div className="relative z-10 container mx-auto px-4 text-center overflow-hidden">
+      {/* TEXT */}
+      <div className="relative z-10 container mx-auto px-4 overflow-hidden">
         <h1
           className={`
             text-4xl md:text-5xl lg:text-6xl font-bold 
@@ -40,7 +41,38 @@ export default function Hero() {
         >
           {text}
         </h1>
+
+        {/* CTA BUTTONS */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+
+          {/* LEFT BUTTON */}
+          <a
+            href="#contact"
+            className="
+    px-10 py-4 rounded-full font-medium text-lg 
+    bg-[#8854FF] text-white
+    hover:bg-black transition-all duration-300
+    block text-center
+  "
+          >
+            Book Now
+          </a>
+
+          {/* RIGHT BUTTON */}
+          <a
+            href="#aboutus"
+            className="
+    px-10 py-4
+    rounded-full 
+    text-white
+    border border-white
+    font-medium text-lg
+  "
+          >
+            Learn More
+          </a>
+        </div>
       </div>
     </section>
   );
-} 
+}

@@ -58,58 +58,60 @@ export default function AboutSection() {
       </div>
 
       {/* --- WHAT WE DO --- */}
-      <div className="grid md:grid-cols-2 gap-10 px-10 lg:px-24 py-20 border-t border-white/10">
+<div className="grid md:grid-cols-2 gap-10 px-10 lg:px-24 py-20 border-t border-white/10">
 
-        {/* LEFT TITLE */}
-        <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-[70px] leading-[1.1] font-light text-[#4C9FFF]">
-            WHAT <br /> WE DO
-          </h2>
-        </motion.div>
+{/* RIGHT SERVICES — NOW ON LEFT SIDE */}
+<div className="grid md:grid-cols-2 gap-12 text-lg">
 
-        {/* RIGHT SERVICES */}
-        <div className="grid md:grid-cols-2 gap-12 text-lg">
+  {/* COLUMN 1 */}
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: 0.2 }}
+    viewport={{ once: true }}
+  >
+    <h3 className="text-[#4C9FFF] font-semibold mb-2">🛠 Odoo Implementation</h3>
+    <p className="mb-6">Do the best thing. Do the right implementation.</p>
 
-          {/* COLUMN 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-[#4C9FFF] font-semibold mb-2">🛠 Odoo Implementation</h3>
-            <p className="mb-6">Do the best thing. Do the right implementation.</p>
+    <h3 className="text-[#4C9FFF] font-semibold mb-2">⚙ Odoo Customization</h3>
+    <p className="mb-6">Enhance customization and make perfection into reality.</p>
 
-            <h3 className="text-[#4C9FFF] font-semibold mb-2">⚙ Odoo Customization</h3>
-            <p className="mb-6">Enhance customization and make perfection into reality.</p>
+    <h3 className="text-[#4C9FFF] font-semibold mb-2">🔗 Odoo Integration</h3>
+    <p>Advanced API & Web services supported.</p>
+  </motion.div>
 
-            <h3 className="text-[#4C9FFF] font-semibold mb-2">🔗 Odoo Integration</h3>
-            <p>Advanced API & Web services supported.</p>
-          </motion.div>
+  {/* COLUMN 2 */}
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: 0.4 }}
+    viewport={{ once: true }}
+  >
+    <h3 className="text-[#4C9FFF] font-semibold mb-2">👨‍💻 Developer Outsourcing</h3>
+    <p className="mb-6">Hire top Odoo specialists for worldclass results.</p>
 
-          {/* COLUMN 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-[#4C9FFF] font-semibold mb-2">👨‍💻 Developer Outsourcing</h3>
-            <p className="mb-6">Hire top Odoo specialists for world-class results.</p>
+    <h3 className="text-[#4C9FFF] font-semibold mb-2">🛡 Odoo Support</h3>
+    <p className="mb-6">We upgrade and monitor your systems.</p>
 
-            <h3 className="text-[#4C9FFF] font-semibold mb-2">🛡 Odoo Support</h3>
-            <p className="mb-6">We upgrade and monitor your systems.</p>
+    <h3 className="text-[#4C9FFF] font-semibold mb-2">✏ Odoo Apps</h3>
+    <p>Explore our advanced Odoo community apps.</p>
+  </motion.div>
 
-            <h3 className="text-[#4C9FFF] font-semibold mb-2">✏ Odoo Apps</h3>
-            <p>Explore our advanced Odoo community apps.</p>
-          </motion.div>
-        </div>
-      </div>
+</div>
+
+{/* TITLE — NOW ON RIGHT SIDE */}
+<motion.div
+  initial={{ opacity: 0, x: 80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+  className="text-right"
+>
+  <h2 className="text-[70px] leading-[1.1] font-light text-[#4C9FFF]">
+    WHAT <br /> WE DO
+  </h2>
+</motion.div>
+</div>
 
       {/* --- WHY EDUCATIONAL ERP --- */}
       <div className="grid md:grid-cols-2 gap-10 px-10 lg:px-24 py-20 border-t border-white/10">
@@ -122,8 +124,11 @@ export default function AboutSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-[70px] leading-[1.1] font-light text-[#4C9FFF]">
-            WHY <br /> EDUCATIONAL <br /> ERP
-          </h2>
+  WHY <br />
+  <span className="text-[45px]">EDUCATIONAL</span> <br />
+  ERP
+</h2>
+
         </motion.div>
 
         {/* RIGHT PARAGRAPH */}

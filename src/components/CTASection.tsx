@@ -10,15 +10,17 @@ export default function CTASection() {
 
           {/* REQUEST DEMO BUTTON (Purple) */}
           <a
-            href="#contactsection"
-            className="
-              px-10 py-4 rounded-full font-medium text-lg 
-              bg-[#8854FF] text-white
-              hover:bg-black transition-all duration-300
-            "
-          >
-            Request a demo
-          </a>
+  href="#contactsection"
+  className="
+    px-10 py-4 rounded-full font-medium text-lg 
+    bg-[#8854FF] text-white
+    hover:bg-black transition-all duration-300
+    block text-center
+  "
+>
+  Request a demo
+</a>
+
 
           {/* DOWNLOAD BUTTON */}
           <a
