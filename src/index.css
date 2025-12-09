@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+    scroll-behavior: smooth;
+  }
+  
+/* Dotted background pattern */
+/* Background dot pattern: shifted inward */
+.bg-dot-pattern {
+    background-image: radial-gradient(circle, #1e293b 1px, transparent 1px);
+    background-size: 28px 28px; /* space between dots */
+    background-position: 20px 20px; /* shifts pattern right & down */
+  }
+  
+  /* Dot pattern background 
+  shortening every lengthy
+              procedure such as fee management, student attendance, exam management and student
+              enrollment. We eliminate every extra manual labor involved via automating every
+              school-related paper work.*/
+
+  
+  
