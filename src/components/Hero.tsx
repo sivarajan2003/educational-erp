@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 
 export default function Hero() {
-  const [text, setText] = useState(
-    "AN OPEN SOURCE SCHOOL ADMINISTRATION SOFTWARE"
-  );
+  const messages = [
+    "AN OPEN SOURCE SCHOOL ADMINISTRATION SOFTWARE",
+    "ULTIMATE SOFTWARE TO RUN YOUR SCHOOL",
+  ];
+
+  const [index, setIndex] = useState(0);
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimate(true);
+    const interval = setInterval(() => {
+      setAnimate(true); // fade out
 
       setTimeout(() => {
-        setText("ULTIMATE SOFTWARE TO RUN YOUR SCHOOL");
-        setAnimate(false);
+        setIndex((prev) => (prev + 1) % messages.length); // switch message
+        setAnimate(false); // fade in
       }, 700);
     }, 5000);
 
-    return () => clearTimeout(timer);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -29,7 +32,6 @@ export default function Hero() {
         text-center
       "
     >
-      {/* TEXT */}
       <div className="relative z-10 container mx-auto px-4 overflow-hidden">
         <h1
           className={`
@@ -39,35 +41,31 @@ export default function Hero() {
             ${animate ? "translate-x-full opacity-0" : "translate-x-0 opacity-100"}
           `}
         >
-          {text}
+          {messages[index]}
         </h1>
 
-        {/* CTA BUTTONS */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
-
-          {/* LEFT BUTTON */}
           <a
             href="#contact"
             className="
-    px-10 py-4 rounded-full font-medium text-lg 
-    bg-[#8854FF] text-white
-    hover:bg-black transition-all duration-300
-    block text-center
-  "
+              px-10 py-4 rounded-full font-medium text-lg 
+              bg-[#8854FF] text-white
+              hover:bg-black transition-all duration-300
+              block text-center
+            "
           >
             Book Now
           </a>
 
-          {/* RIGHT BUTTON */}
           <a
             href="#aboutus"
             className="
-    px-10 py-4
-    rounded-full 
-    text-white
-    border border-white
-    font-medium text-lg
-  "
+              px-10 py-4
+              rounded-full 
+              text-white
+              border border-white
+              font-medium text-lg
+            "
           >
             Learn More
           </a>

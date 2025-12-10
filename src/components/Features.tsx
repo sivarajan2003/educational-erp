@@ -41,7 +41,7 @@ export default function FeaturesWithAbout() {
     <section id="features" className="bg-[#0F131D] py-24">
 
       {/* ---------------- 12 FEATURE CARDS ---------------- */}
-      <div className="container mx-auto px-4 mb-20">
+      <div className="max-w-[1450px] mx-auto px-0 mb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
 
           {features.map((item, index) => (
@@ -109,8 +109,7 @@ export default function FeaturesWithAbout() {
               transition={{ delay: 0.45, duration: 0.7 }}
               viewport={{ once: true }}
             >
-              We <span className="text-blue-400 font-medium">bring</span> you the latest
-              technology software for effective school management shortening every lengthy procedure such as fee management, student attendance, exam management and student enrollment. We eliminate every extra manual labor involved via automating every school-related paperwork.
+              We bring you the latest technology software for effective school management shortening every lengthy procedure such as fee management, student attendance, exam management and student enrollment. We eliminate every extra manual labor involved via automating every school-related paperwork.
 
 
             </motion.p>

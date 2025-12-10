@@ -3,6 +3,15 @@ import AttendImg from "../assets/attend-removebg-preview.png";
 import FeeManagementImg from "../assets/Fee_Management_System-removebg-preview.png";
 
 export default function ModernSolutions() {
+  const cardZoomIn = {
+    hidden: { opacity: 0, y: 60, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.7, ease: "easeOut" }
+    }
+  };
   return (
     <section id="modern" className="bg-[#0F131D] text-gray-300 py-20 px-6 lg:px-20">
 
@@ -19,6 +28,7 @@ export default function ModernSolutions() {
           Powerful ERP Features  
           <br /> Built for Educational Institutions
         </motion.h1>
+        
       </div>
 
       {/* ---------- CARD WRAPPER ---------- */}
@@ -105,7 +115,14 @@ export default function ModernSolutions() {
         <div className="grid md:grid-cols-2 gap-10">
 
 {/* ----------------------------------------------------
-    CARD 2 — FEE MANAGEMENT SYSTEM  (IMAGE ON TOP)
+    CARD 2 — FEE MANAGEMENT SYSTEM  (IMAGE ON TOP)<motion.div
+  variants={cardZoomIn}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: false, amount: 0.3 }}
+  className="bg-[#141923] rounded-3xl p-10 shadow-lg shadow-black/20"
+>
+
 ---------------------------------------------------- */}
 <motion.div
   initial={{ opacity: 0, y: 40 }}
@@ -168,7 +185,25 @@ export default function ModernSolutions() {
         className="bg-[#141923] rounded-3xl p-8 shadow-lg shadow-black/20"
       >
         {/* IMAGE TOP */}
-          <p className="text-gray-500">IMAGE HERE</p>
+         {/* IMAGE ON TOP — CLEAN FLOATING PNG WITH GRADIENT */}
+<div className="w-full flex justify-center mb-10 relative">
+
+{/* MAIN IMAGE  FeeManagementImg*/}
+<img
+  src={FeeManagementImg}
+  alt="Fee Management System"
+  className="w-[85%] md:w-[70%] object-contain relative z-10"
+/>
+
+{/* SOFT GRADIENT BEHIND IMAGE */}
+<div className="absolute inset-0 flex justify-center items-center -z-10">
+  <div className="w-[90%] md:w-[75%] h-full 
+    bg-gradient-to-b from-[#ffffff22] via-transparent to-transparent 
+    blur-2xl rounded-3xl">
+  </div>
+</div>
+
+</div>
        
 
         {/* SECTION LABEL */}
@@ -205,22 +240,37 @@ EXAM & ACADEMIC MANAGEMENT
           className="bg-[#141923] rounded-3xl p-10 shadow-lg shadow-black/20 flex flex-col md:flex-row items-center gap-10"
         >
           {/* LEFT IMAGE */}
-          <div className="md:w-1/2 flex justify-center">
-            <div className="w-full h-56 bg-[#1d2330] rounded-2xl flex items-center justify-center border border-gray-700">
-              <p className="text-gray-500">IMAGE HERE</p>
-            </div>
-          </div>
+          <div
+    className="
+      w-[520px] h-[360px]
+      md:w-[600px] md:h-[420px]
+      overflow-visible
+      rounded-3xl
+      flex items-center justify-center
+      relative left-[-50px]
+    "
+  >
+    <img
+      src={AttendImg}         // ← change image name if needed
+      alt="Feature Illustration"
+      className="w-full h-full object-cover rounded-3xl"
+    />
+
+    {/* Bottom gradient fade (same effect as Card 1) */}
+    <div className="absolute inset-0 bg-gradient-to-b 
+        from-transparent via-transparent to-[#0F131D]/80"></div>
+  </div>
 
           {/* RIGHT TEXT */}
           <div className="md:w-1/2">
-          <p className="text-[#4C9FFF] tracking-widest text-sm mb-3">
+          <p className="text-[14px] font-medium tracking-[0.08em] text-[#4C9FFF] uppercase mb-4">
   PARENT TEACHER COMMUNICATION
 </p>
 
-<h3 className="text-3xl font-semibold text-white mb-4">
+<h2 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
   Bridge Communication Gaps  
   <br /> With a Unified Platform.
-</h3>
+</h2>
 
 <p className="features-card-text w-richtext">
 
