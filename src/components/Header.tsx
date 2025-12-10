@@ -27,7 +27,7 @@ export default function Header() {
             <a href="#home" className="hover:text-gray-300 transition">Home</a>
           </li>
           <li>
-            <a href="#aboutus" className="hover:text-gray-300 transition">Aboutus</a>
+            <a href="#modern" className="hover:text-gray-300 transition">Aboutus</a>
           </li>
           <li>
             <a href="#contact" className="hover:text-gray-300 transition">Contact</a>

@@ -1,15 +1,15 @@
 import Logo from "../assets/logo.png";
-import CybrosysLogo from "../assets/cybrosys-technologies.png";
+import ATSwhlo from "../assets/ATSwhlo.png";   // ✅ New PNG
 
 export default function ContactSection() {
   return (
     <footer className="bg-[#0F131D] text-gray-300 py-16 px-6 md:px-20">
       <section id="contact" className="py-20 bg-[#0F131D]"></section>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
 
         {/* LEFT SECTION */}
         <div>
-          {/* Imported Logo */}
           <img src={Logo} alt="Educational ERP" className="w-60 mb-6" />
 
           <p className="leading-relaxed">
@@ -50,21 +50,15 @@ export default function ContactSection() {
           </h3>
 
           <ul className="space-y-2">
-            <li>
-              <a href="#home" className="hover:text-white transition">Home</a>
-            </li>
-            <li>
-              <a href="#about" className="hover:text-white transition">About</a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-white transition">Contact</a>
-            </li>
+            <li><a href="#home" className="hover:text-white transition">Home</a></li>
+            <li><a href="#about" className="hover:text-white transition">About</a></li>
+            <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
           </ul>
 
-          {/* Imported Cybrosys Logo */}
+          {/* ✅ Replaced old image with ATSwhlo.png */}
           <img
-            src={CybrosysLogo}
-            alt="Cybrosys Technologies"
+            src={ATSwhlo}
+            alt="Company Branding"
             className="w-56 mt-10"
           />
 
