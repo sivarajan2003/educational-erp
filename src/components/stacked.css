@@ -1,0 +1,155 @@
+:root {
+  --cards: 4;
+  --cardWidth: 560px;
+  --cardHeight: 380px;
+  --cardTopPadding: 2em;
+  --cardMargin: 4vw;
+}
+
+.right-stack-area {
+  height: 600px;         /* FIXED HEIGHT for right side */
+  overflow: hidden;       /* prevents page scroll */
+  position: relative;
+}
+
+/* Scrollable ONLY inside the card stack */
+.stack-wrapper {
+  height: 100%;
+  width: var(--cardWidth);
+  overflow-y: auto;       /* scroll only inside cards */
+  overflow-x: hidden;
+  margin-left: auto;      /* push to right side */
+  scrollbar-width: none;  
+}
+
+.stack-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.stack-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+padding-left: 0;
+
+  box-sizing: border-box;
+}
+
+
+
+/* Card list */
+#cards {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(var(--cards), var(--cardHeight));
+  gap: var(--cardMargin);
+  padding-bottom: calc(var(--cards) * var(--cardTopPadding));
+}
+
+/* Index for sticky spacing */
+#card1 { --index: 1; }
+#card2 { --index: 2; }
+#card3 { --index: 3; }
+#card4 { --index: 4; }
+
+/* Sticky stacking */
+.card {
+  position: sticky;
+  top: 0;
+  padding-top: calc(var(--index) * var(--cardTopPadding));
+}
+
+/* Card UI */
+.card-body {
+  width: var(--cardWidth);
+  height: var(--cardHeight);
+  background-color: #161A23;
+  border-radius: 32px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+  overflow: hidden;
+}
+/* ===========================
+   ANIMATED BORDER GLOW
+=========================== */
+
+.card-body {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-body::before {
+  
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 4px; /* border thickness */
+  border-radius: 36px;
+
+  background: linear-gradient(
+    120deg,
+    #b38cff,
+    #67d7ff,
+    #8df0a4,
+    #ffd46a
+  );
+  
+
+  /* Makes center transparent */
+  -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+  animation: borderGlow 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes borderGlow {
+  from { filter: hue-rotate(0deg); }
+  to   { filter: hue-rotate(360deg); }
+}
+
+
+.card-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 32px;
+}
+/* Parent grid (two columns) */
+.grid {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* Left text | Right cards */
+  column-gap: 0px;                 /* <<< Add spacing between sections */
+  padding-right: 130px;             /* <<< Create right-side padding like Image 2 */
+}
+
+/* ===========================
+   FADE-IN + SLIDE-UP ANIMATION
+=========================== */
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to each card */
+.card {
+  animation: fadeSlideUp 0.8s ease-out forwards;
+  opacity: 0; /* start hidden */
+}
+
+/* Delay each card slightly for stagger effect */
+#card1 { animation-delay: 0.1s; }
+#card2 { animation-delay: 0.25s; }
+#card3 { animation-delay: 0.4s; }
+#card4 { animation-delay: 0.55s; }

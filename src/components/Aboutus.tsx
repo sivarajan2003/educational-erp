@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
-import AttendImg from "../assets/attend-removebg-preview.png";
+
+// UPDATED IMAGE IMPORTS ↓↓↓
+import AttendanceImg from "../assets/Attandence.png";
 import FeeManagementImg from "../assets/Fee_Management_System-removebg-preview.png";
+import ExamImg from "../assets/Exam and Accademic.png";
+import ParentImg from "../assets/parent.png";
 
 export default function ModernSolutions() {
   return (
@@ -35,8 +39,8 @@ export default function ModernSolutions() {
   className="
   bg-[#161A23]
  rounded-3xl
-    px-10 py-16                 /* ← increased height */
-    min-h-[550px]              /* ← EXACT height of image 2 */
+    px-10 py-16
+    min-h-[550px]
     shadow-lg shadow-black/20
     flex flex-col md:flex-row
     items-start gap-12
@@ -59,9 +63,9 @@ export default function ModernSolutions() {
   </div>
 
   <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mt-6">
-    Traditional register-based attendance slows down classrooms and creates 
-    inaccurate records. Our Attendance Module automates attendance, ensures 
-    100% accuracy, and sends real-time updates to parents.
+  Traditional register-based attendance slows down classrooms and creates inaccurate records.
+With our smart Attendance Management Module, schools can automate daily attendance,
+ensure 100% accuracy, and send real-time updates to parents all with a single click.
   </p>
 </div>
 
@@ -69,15 +73,13 @@ export default function ModernSolutions() {
   <div className="md:w-1/2 flex justify-end items-center">
   <div className="w-full md:w-[110%] lg:w-[125%] relative right-[-40px] rounded-3xl overflow-hidden">
     
-    {/* IMAGE ONLY */}
     <img 
-      src={AttendImg} 
+      src={AttendanceImg} 
       className="w-full object-cover rounded-3xl scale-110"
     />
 
   </div>
 </div>
-
 
 </motion.div>
 
@@ -87,7 +89,7 @@ export default function ModernSolutions() {
 =========================================== */}
 <div className="grid md:grid-cols-2 gap-6 w-full">
 
-  {/* CARD 2 — Fee Management {FeeManagementImg}*/}
+  {/* CARD 2 — Fee Management */}
   <motion.div
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -109,7 +111,6 @@ rounded-3xl
       className="w-full object-cover rounded-3xl scale-110"
     />
 
-    {/* DARK GRADIENT OVERLAY (like Card 1) */}
     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0F131D]/70" />
   </div>
 </div>
@@ -125,8 +126,9 @@ rounded-3xl
     </h2>
 
     <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mt-6">
-      Manual fee collection leads to delays. Our system automates reminders, 
-      tracks dues, handles online payments, and provides transparent reporting.
+    Manual fee collection leads to missed payments, calculation errors, and reconciliation delays.
+Our Fee Management System automates reminders, tracks dues, processes online payments,
+and generates transparent financial reports—helping schools manage finances effortlessly.
     </p>
   </motion.div>
 
@@ -138,7 +140,6 @@ rounded-3xl
     transition={{ duration: 0.7 }}
     className="
     bg-[#161A23]
-
     rounded-3xl 
       p-8 
       shadow-lg shadow-black/20 
@@ -147,14 +148,13 @@ rounded-3xl
   >
     <div className="w-full flex justify-center mb-8 relative">
   <div className="w-full md:w-[95%] lg:w-[110%] rounded-3xl overflow-hidden relative">
-    
-    {/* IMAGE with ZOOM */}
+
+    {/* USE NEW EXAM IMAGE */}
     <img 
-      src={FeeManagementImg} 
+      src={ExamImg} 
       className="w-full object-cover rounded-3xl scale-110"
     />
 
-    {/* DARK GRADIENT OVERLAY (like Card 1) */}
     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0F131D]/70" />
   </div>
 </div>
@@ -169,8 +169,9 @@ rounded-3xl
     </h2>
 
     <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mt-6">
-      Auto-generate report cards, publish results instantly, and simplify 
-      your entire academic workflow.
+    Creating timetables, entering marks, and preparing report cards manually consumes valuable
+time. Our Exam & Academic Module simplifies the entire workflow automated marking, digital
+report cards, grade calculation, and error-free result generation in minutes.
     </p>
   </motion.div>
 
@@ -186,9 +187,9 @@ rounded-3xl
   transition={{ duration: 0.8 }}
   className="
   bg-[#161A23]
-rounded-3xl
-    px-1 py-16                 /* ← increased height */
-    min-h-[550px]              /* ← EXACT height of image 2 */
+ rounded-3xl
+    px-10 py-16
+    min-h-[550px]
     shadow-lg shadow-black/20
     flex flex-col md:flex-row
     items-start gap-12
@@ -198,11 +199,12 @@ rounded-3xl
 
   {/* IMAGE LEFT */}
   <div className="md:w-1/2 flex justify-end items-center">
-  <div className="w-full md:w-[110%] lg:w-[125%] relative right-[-40px] rounded-3xl overflow-hidden">
+  <div className="w-full md:w-[110%] lg:w-[125%] relative right-[-10px] rounded-3xl overflow-hidden">
     
     <img 
-      src={AttendImg} 
-      className="w-full object-cover rounded-3xl scale-110"    />
+      src={ParentImg} 
+      className="w-full object-cover rounded-3xl scale-110"
+    />
   </div>
 </div>
 
@@ -218,10 +220,12 @@ rounded-3xl
     </h2>
 
     <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mt-6">
-      Centralize announcements, homework, messages, and student progress 
-      updates all in one unified platform.
+    WhatsApp groups and circulars often result in scattered communication.
+Our Communication Module centralizes messages, announcements, homework, and student
+progress updates—ensuring seamless, trackable interaction between parents and teachers.
     </p>
   </div>
+
 </motion.div>
 
 </div>
