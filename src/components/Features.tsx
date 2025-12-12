@@ -45,9 +45,7 @@ export default function Features() {
             </motion.div>
           ))}
         </div>
-      </div>
-
-      {/* ---------------- BOTTOM SECTION ---------------- */}
+    </div>
       <div className="grid lg:grid-cols-2 gap-0 min-h-[700px]">
 
         {/* LEFT TEXT SECTION */}
