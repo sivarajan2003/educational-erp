@@ -54,7 +54,7 @@ export default function Hero() {
               block text-center
             "
           >
-            Book Now
+            Book Demo
           </a>
 
           <a

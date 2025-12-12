@@ -1,104 +1,219 @@
-import { motion } from "framer-motion";
+import { useEffect } from "react";
 import "./stacked.css";
 
+// GSAP
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+// Images
 import SimpleImg from "../assets/simple.png";
 import BeautifulImg from "../assets/beautifulinterface.png";
 import ToprateImg from "../assets/toprate.png";
 import InnovativeImg from "../assets/innovative.png";
 
-import {
-  Handshake, HardDrive, CalendarCheck, CalendarDays, Pencil,
-  Bed, Bus, Banknote, Database, Briefcase, CheckSquare, TrendingUp
-} from "lucide-react";
-
-const features = [
-  { icon: Handshake, title: "Admission", desc: "An easy gateway to manage the admission procedure." },
-  { icon: HardDrive, title: "Student Database", desc: "A single interface incorporating every detail of a student." },
-  { icon: CalendarCheck, title: "Student Attendance", desc: "An intuitive attendance management system." },
-  { icon: CalendarDays, title: "Timetable", desc: "An enhanced communication network for sharing information." },
-  { icon: Pencil, title: "Exam management", desc: "Accurately evaluate each student effectively." },
-  { icon: Bed, title: "Hostel management", desc: "Smartly allocate the stay and administer related activities." },
-  { icon: Bus, title: "Transportation", desc: "Efficiently manages buses, routes, stops and charges." },
-  { icon: Banknote, title: "Fee management", desc: "Makes account processes streamlined and error-proof." },
-  { icon: Database, title: "Staff database", desc: "Presents staff information in a handy way." },
-  { icon: Briefcase, title: "Staff Recruitment", desc: "Dynamic recruiting and efficient tracking." },
-  { icon: CheckSquare, title: "Staff Attendance", desc: "Easy intuitive attendance management." },
-  { icon: TrendingUp, title: "Staff payroll", desc: "Centralized database to manage benefits." }
-];
-
 export default function Features() {
+  useEffect(() => {
+    const stack = document.querySelector(".stack-wrapper") as HTMLElement | null;
+    const left = document.querySelector(".left-static-content") as HTMLElement | null;
+    const wrapper = document.querySelector(".features-wrapper") as HTMLElement | null;
+  
+    if (!stack || !left || !wrapper) return;
+  
+    // 1) PIN LEFT SIDE WHILE RIGHT SCROLLS
+    ScrollTrigger.create({
+      trigger: "#features",
+      start: "top top",
+      end: () => stack.scrollHeight - stack.clientHeight,
+      // SHORTER — removes large gap
+      pin: ".left-static-content",
+      pinSpacing: true,                // allows natural flow after unpin
+      anticipatePin: 1,
+    });
+  
+    // 2) ANIMATION FOR CARDS
+    gsap.utils.toArray<HTMLElement>(".card-body").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 80 },
+        {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: el,
+            scroller: stack,
+            start: "top 90%",
+            end: "top 40%",
+            scrub: true,
+          },
+        }
+      );
+    });
+  
+    // 3) PARALLAX IMAGE
+    gsap.utils.toArray<HTMLElement>(".panel-image").forEach((img) => {
+      gsap.fromTo(
+        img,
+        { y: 60, scale: 1.08 },
+        {
+          y: -40,
+          scale: 1,
+          scrollTrigger: {
+            trigger: img,
+            scroller: stack,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    });
+  
+    // ------------------------------------------------------------
+    // 4) FORWARD SCROLL FROM LEFT → RIGHT SCROLL AREA
+    // ------------------------------------------------------------
+    const forwardScroll = (e: WheelEvent) => {
+      const atTop = stack.scrollTop === 0;
+      const atBottom = Math.ceil(stack.scrollTop + stack.clientHeight) >= stack.scrollHeight;
+  
+      // SCROLL inside right column
+      if (!(atTop && e.deltaY < 0) && !(atBottom && e.deltaY > 0)) {
+        e.preventDefault();
+        stack.scrollBy({ top: e.deltaY, behavior: "auto" });
+      }
+    };
+  
+    left.addEventListener("wheel", forwardScroll, { passive: false });
+  
+    // Clean
+    return () => {
+      left.removeEventListener("wheel", forwardScroll);
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+  
   return (
     <section id="features" className="bg-[#0F131D] py-24">
 
-      {/* ---------------- TOP FEATURE CARDS ---------------- */}
-      <div className="max-w-[1450px] mx-auto px-0 mb-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
-          {features.map((item, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -10, scale: 1.03 }}
-              className="bg-[#161A23] rounded-3xl p-7 shadow-xl text-center cursor-pointer transition-all duration-300"
-            >
-              <item.icon className="w-14 h-14 mx-auto mb-5 text-white" strokeWidth={1.2} />
-              <h3 className="text-lg font-semibold text-white mb-3">{item.title}</h3>
-              <p className="text-gray-300 text-sm leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-    </div>
-      <div className="grid lg:grid-cols-2 gap-0 min-h-[700px]">
+      {/* FLEX WRAPPER (VERY IMPORTANT) */}
+      <div className="features-wrapper">
+        <div className="features-inner">
 
-        {/* LEFT TEXT SECTION */}
-        <div className="px-8 lg:px-24 py-20 flex items-start">
-          <div className="max-w-[650px]">
-            <h2 className="text-[52px] md:text-[64px] font-light leading-tight text-[#DE6C6C] mb-14 tracking-wide">
-              BE AN EFFECTIVE <br /> ADMINISTRATOR
-            </h2>
+          {/* LEFT — ALWAYS PINNED */}
+          {/* LEFT — ALWAYS PINNED */}
+<div className="left-static-content px-12 lg:px-24 py-20">
+  <div className="max-w-[650px]">
 
-            <p className="text-gray-300 text-[18px] leading-[1.7] mb-10">
-              Managing a school is no easy task. The sheer magnitude of processes involved
-              can be overwhelming, especially if they are disconnected. Gone are the days
-              when people depended on each other for the simplest procedures.
-              We bring modern ERP software that automates fee management, attendance,
-              exam management and student enrollment—eliminating unnecessary manual labor.
-            </p>
+    <h2
+      className="
+        text-white
+        font-light
+        tracking-tight
+        leading-[1.1]
+        text-[48px]
+        md:text-[64px]
+        lg:text-[72px]
+        mb-12
+      "
+    >
+      BE AN <br /> EFFECTIVE <br /> ADMINISTRATOR
+    </h2>
+
+    <p className="text-gray-300 text-[18px] leading-[1.7]">
+    Managing a school is no easy task. The sheer magnitude of processes involved can be overwhelming, especially if they are disconnected. And gone are those days when people used to depend on each other for even the simplest procedures.
+    We bring you the latest technology software for effective school management, shortening every lengthy procedure such as fee management, student attendance, exam management and student enrollment. We eliminate every extra manual labor involved via automating every school-related paperwork.
+
+
+    </p>
+
+  </div>
+</div>
+
+
+          {/* RIGHT — ONLY THIS SCROLLS */}
+          <div className="right-stack-area pr-20 md:pr-32">
+
+
+            <div className="stack-wrapper">
+              <ul id="cards">
+
+                {/* CARD 1 */}{/* CARD 1 */}
+<li className="card border-anim-1">
+
+                  
+                <div className="card-frame px-8 md:px-12">
+                    <div className="stack-glow" />
+                    <div className="card-body bg-black rounded-3xl">
+
+                      <div className="panel-inner">
+                        <div className="panel-title">Top rated</div>
+                        <div className="panel-sub">Designed for clarity</div>
+                        <div className="chart-wrap">
+                          <img src={SimpleImg} className="panel-image" />
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                {/* CARD 2 */}
+                <li className="card border-anim-1">
+                <div className="card-frame px-8 md:px-12">
+                    <div className="stack-glow" />
+                    <div className="card-body bg-black rounded-3xl">
+
+                      <div className="panel-inner">
+                        <div className="panel-title">Beautiful Interface</div>
+                        <div className="panel-sub">Clean modern visuals</div>
+                        <div className="chart-wrap">
+                          <img src={BeautifulImg} className="panel-image" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                {/* CARD 3 */}
+                <li className="card border-anim-1">
+                <div className="card-frame px-8 md:px-12">
+                    <div className="stack-glow" />
+                    <div className="card-body bg-black rounded-3xl">
+
+                      <div className="panel-inner">
+                        <div className="panel-title">Top Performance</div>
+                        <div className="panel-sub">Lightning fast</div>
+                        <div className="chart-wrap">
+                          <img src={ToprateImg} className="panel-image" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                {/* CARD 4 */}<li className="card border-anim-1">
+                <div className="card-frame px-8 md:px-12">
+                    <div className="stack-glow" />
+                    <div className="card-body bg-black rounded-3xl">
+
+                      <div className="panel-inner">
+                        <div className="panel-title">Simple Solutions</div>
+                        <div className="panel-sub">No fluff — just functionality</div>
+                        <div className="chart-box">
+                          <img src={InnovativeImg} className="panel-image" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
           </div>
+
         </div>
-
-        {/* ---------------- RIGHT STACK UI ---------------- */}
-        <div className="right-stack-area">
-  <div className="stack-wrapper">
-          <ul id="cards">
-
-            <li id="card1" className="card">
-              <div className="card-body glow-border">
-                <img src={SimpleImg} className="stack-img" />
-              </div>
-            </li>
-
-            <li id="card2" className="card">
-              <div className="card-body glow-border">
-                <img src={BeautifulImg} className="stack-img" />
-              </div>
-            </li>
-
-            <li id="card3" className="card">
-              <div className="card-body glow-border">
-                <img src={ToprateImg} className="stack-img" />
-              </div>
-            </li>
-
-            <li id="card4" className="card">
-              <div className="card-body glow-border">
-                <img src={InnovativeImg} className="stack-img" />
-              </div>
-            </li>
-
-          </ul>
-        </div>
-
       </div>
-      </div>
+
     </section>
   );
 }

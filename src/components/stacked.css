@@ -1,155 +1,267 @@
 :root {
   --cards: 4;
-  --cardWidth: 560px;
-  --cardHeight: 380px;
-  --cardTopPadding: 2em;
+  --cardWidth: 520px;
+  --cardHeight: 360px;
   --cardMargin: 4vw;
 }
 
-.right-stack-area {
-  height: 600px;         /* FIXED HEIGHT for right side */
-  overflow: hidden;       /* prevents page scroll */
-  position: relative;
+/* MAIN WRAPPER */
+.features-wrapper {
+  width: 100%;
 }
 
-/* Scrollable ONLY inside the card stack */
+/* FLEX LAYOUT FIX */
+.features-inner {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* LEFT PANEL (PINNED) */
+.left-static-content {
+  width: 55%;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* RIGHT PANEL (SCROLLER) */
+.right-stack-area {
+  width: 45%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 60px;
+}
+
+/* INTERNAL SCROLL AREA */
 .stack-wrapper {
   height: 100%;
   width: var(--cardWidth);
-  overflow-y: auto;       /* scroll only inside cards */
+  overflow-y: scroll;
   overflow-x: hidden;
-  margin-left: auto;      /* push to right side */
-  scrollbar-width: none;  
+  scrollbar-width: none;
+  scroll-behavior: smooth;
 }
+.stack-wrapper::-webkit-scrollbar { display: none; }
 
-.stack-wrapper::-webkit-scrollbar {
-  display: none;
-}
-.stack-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-padding-left: 0;
-
-  box-sizing: border-box;
-}
-
-
-
-/* Card list */
+/* CARD GRID */
 #cards {
   list-style: none;
-  padding-left: 0;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(var(--cards), var(--cardHeight));
+  height: calc(var(--cards) * var(--cardHeight));
   gap: var(--cardMargin);
-  padding-bottom: calc(var(--cards) * var(--cardTopPadding));
 }
+#cards { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+.card:last-child { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 
-/* Index for sticky spacing */
-#card1 { --index: 1; }
-#card2 { --index: 2; }
-#card3 { --index: 3; }
-#card4 { --index: 4; }
-
-/* Sticky stacking */
+/* EACH CARD (STACK EFFECT) */
 .card {
   position: sticky;
   top: 0;
-  padding-top: calc(var(--index) * var(--cardTopPadding));
+  display: flex;
+  justify-content: center;
 }
 
-/* Card UI */
-.card-body {
-  width: var(--cardWidth);
-  height: var(--cardHeight);
-  background-color: #161A23;
-  border-radius: 32px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
-  overflow: hidden;
-}
-/* ===========================
-   ANIMATED BORDER GLOW
-=========================== */
 
-.card-body {
+/* ----------------------------------------------------
+   🎨 BORDER ANIMATION OPTIONS — CHOOSE ONLY ONE
+-----------------------------------------------------*/
+
+/* OPTION 1 — Moving Gradient Border (DEFAULT OFF) */
+/*
+.card-frame {
+  background: linear-gradient(120deg, #3a3a3a, #0f62fe, #b100ff, #3a3a3a);
+  background-size: 300% 300%;
+  animation: borderFlow 6s ease infinite;
+}
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+*/
+
+/* OPTION 2 — Neon Glow Pulse Border */
+/*
+.card-frame {
+  animation: neonGlow 4s ease-in-out infinite;
+}
+@keyframes neonGlow {
+  0% { box-shadow: 0 0 12px #4c9fff55, 0 0 24px #4c9fff22; }
+  50% { box-shadow: 0 0 18px #4c9fffaa, 0 0 36px #4c9fff55; }
+  100% { box-shadow: 0 0 12px #4c9fff55, 0 0 24px #4c9fff22; }
+}
+*/
+
+/* OPTION 3 — Apple / macOS Border Swipe Light */
+/*
+.card-frame {
   position: relative;
   overflow: hidden;
 }
-
-.card-body::before {
-  
+.card-frame::before {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 4px; /* border thickness */
-  border-radius: 36px;
+  padding: 4px;
+  border-radius: 32px;
+  background: linear-gradient(120deg, #0f62fe, #8b5cf6, #0f62fe);
+  background-size: 200% 200%;
+  animation: swipeBorder 4s linear infinite;
+  z-index: -1;
+}
+@keyframes swipeBorder {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+*/
 
-  background: linear-gradient(
-    120deg,
-    #b38cff,
-    #67d7ff,
-    #8df0a4,
-    #ffd46a
-  );
-  
 
-  /* Makes center transparent */
-  -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
+/* ----------------------------------------------------
+   ACTIVE BORDER STYLE (DEFAULT STATIC BLACK BORDER)
+-----------------------------------------------------*/
 
-  animation: borderGlow 6s linear infinite;
-  pointer-events: none;
+.card-frame {
+  width: var(--cardWidth);
+  height: var(--cardHeight);
+  border-radius: 32px;
+  padding: 4px;
+
+  /* Static black border */
+  background: linear-gradient(120deg, #141415, #141415, #141415);
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+  position: relative;
 }
 
-@keyframes borderGlow {
-  from { filter: hue-rotate(0deg); }
-  to   { filter: hue-rotate(360deg); }
+
+/* TOP GLOW */
+.stack-glow {
+  width: 56%;
+  height: 12px;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background: linear-gradient(90deg,#0f0fd7,#2b2b8b,#12128f);
+  opacity: 0.37;
+  filter: blur(10px);
 }
 
+/* INNER PANEL */
+.card-body {
+  width: 100%;
+  height: 100%;
+  background: rgba(8,10,16,0.95);
+  border-radius: 26px;
+  overflow: hidden;
+}
 
-.card-body img {
+.panel-inner {
+  height: 100%;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* TEXT */
+.panel-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.panel-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* CHART WRAPPER */
+.chart-wrap {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: #111114 !important;
+}
+
+/* CHART BOX */
+.chart-box {
+  flex: 1;
+  background: #111114;
+  padding: 18px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMAGE INSIDE CHART */
+.panel-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 32px;
-}
-/* Parent grid (two columns) */
-.grid {
-  align-items: flex-start;
-  display: grid;
-  grid-template-columns: 1fr 1fr;   /* Left text | Right cards */
-  column-gap: 0px;                 /* <<< Add spacing between sections */
-  padding-right: 130px;             /* <<< Create right-side padding like Image 2 */
 }
 
-/* ===========================
-   FADE-IN + SLIDE-UP ANIMATION
-=========================== */
-
-@keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  :root {
+    --cardWidth: 460px;
+    --cardHeight: 340px;
   }
 }
 
-/* Apply animation to each card */
-.card {
-  animation: fadeSlideUp 0.8s ease-out forwards;
-  opacity: 0; /* start hidden */
+@media (max-width: 780px) {
+  :root {
+    --cardWidth: 350px;
+    --cardHeight: 300px;
+  }
+  .right-stack-area { padding-right: 20px; }
+}
+.border-anim-1 .card-frame {
+  background: linear-gradient(
+    120deg,
+    #0d1019,
+    #131721,
+    #1b1f2c,
+    #0d1019
+  );
+  background-size: 300% 300%;
+  animation: card1Flow 6s ease infinite;
 }
 
-/* Delay each card slightly for stagger effect */
-#card1 { animation-delay: 0.1s; }
-#card2 { animation-delay: 0.25s; }
-#card3 { animation-delay: 0.4s; }
-#card4 { animation-delay: 0.55s; }
+@keyframes card1Flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.border-anim-1 .card-frame {
+  background: linear-gradient(
+    120deg,
+    #0d1019,
+    #131721,
+    #1b1f2c,
+    #0d1019
+  );
+  background-size: 300% 300%;
+  animation: card1Flow 6s ease infinite;
+}
+
+@keyframes card1Flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
